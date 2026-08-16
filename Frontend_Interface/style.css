@@ -1,0 +1,401 @@
+/* ---- Reset & Base ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-mocha: #6B4E8E;
+  --color-blue: #C9B8E8;
+  --color-grey: #F5F3FA;
+  --color-text: #2E2A38;
+  --color-done: #9B8FA8;
+  --card-bg: #ffffff;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+[data-theme="dark"] {
+  --color-mocha: #3A2A52;
+  --color-blue: #8B6FC4;
+  --color-grey: #1A1723;
+  --color-text: #EDEAF5;
+  --color-done: #7A7290;
+  --card-bg: #26212F;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-grey);
+  color: var(--color-text);
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---- Header ---- */
+.site-header {
+  background-color: var(--color-mocha);
+  color: white;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+#theme-toggle {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#theme-toggle:hover {
+  background: rgba(255,255,255,0.3);
+  transform: rotate(20deg);
+}
+
+#task-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#task-input {
+  flex: 1;
+  padding: 0.7rem 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--card-bg);
+  color: var(--color-text);
+}
+
+#task-input:focus {
+  outline: 3px solid var(--color-blue);
+}
+
+#task-form button {
+  padding: 0.7rem 1.3rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #E8B84B;
+  color: #2E2A38;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+#task-form button:hover {
+  background-color: #F0C868;
+}
+
+#task-form button:active {
+  transform: scale(0.96);
+}
+
+/* ---- Filter Nav ---- */
+.filter-nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--card-bg);
+}
+
+.filter-btn {
+  padding: 0.5rem 1.1rem;
+  border: 1.5px solid var(--color-mocha);
+  background: var(--card-bg);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-mocha);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .filter-btn {
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.filter-btn:hover {
+  background-color: var(--color-grey);
+}
+
+.filter-btn.active {
+  background-color: var(--color-mocha);
+  color: white;
+}
+
+/* ---- Main Grid ---- */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.sidebar {
+  background-color: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  height: fit-content;
+  text-align: center;
+}
+
+.sidebar h2 {
+  font-family: var(--font-heading);
+  margin-bottom: 1rem;
+  color: var(--color-mocha);
+  text-align: left;
+}
+
+[data-theme="dark"] .sidebar h2 {
+  color: var(--color-blue);
+}
+
+/* ---- Progress Ring ---- */
+.progress-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(var(--color-mocha) 0%, var(--color-grey) 0%);
+  position: relative;
+  transition: background 0.4s ease;
+}
+
+.progress-ring::before {
+  content: '';
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: var(--card-bg);
+}
+
+.progress-ring span {
+  position: relative;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-mocha);
+  font-size: 1.1rem;
+}
+
+[data-theme="dark"] .progress-ring span {
+  color: var(--color-blue);
+}
+
+#task-count {
+  text-align: center;
+}
+
+/* ---- Stats Breakdown ---- */
+.stats-breakdown {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.stat-row strong {
+  margin-left: auto;
+}
+
+.stat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.active-dot { background-color: #E8B84B; }
+.completed-dot { background-color: #7FB88C; }
+
+/* ---- Task List ---- */
+.task-list {
+  background-color: var(--card-bg);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(128,128,128,0.2);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.task-item:hover {
+  background-color: var(--color-grey);
+}
+
+.task-item .task-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-done);
+}
+
+/* ---- Checkbox ---- */
+.check-btn {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-mocha);
+  border-radius: 6px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .check-btn {
+  border-color: var(--color-blue);
+}
+
+.check-btn.checked {
+  background-color: var(--color-mocha);
+  border-color: var(--color-mocha);
+}
+
+.check-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: white;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Delete Button ---- */
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.delete-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-mocha);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-theme="dark"] .delete-btn svg {
+  stroke: var(--color-blue);
+}
+
+.delete-btn:hover svg {
+  stroke: #D96A6A;
+}
+
+.delete-btn:hover {
+  background-color: rgba(217, 106, 106, 0.1);
+}
+
+.empty-msg {
+  color: var(--color-done);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--color-mocha);
+  color: white;
+  margin-top: 2rem;
+}
+
+/* ---- Confetti ---- */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ---- Tablet & up ---- */
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  #task-form {
+    max-width: 500px;
+  }
+}
